@@ -2,16 +2,12 @@ FROM php:7.4-apache
 
 ENV APACHE_DOCUMENT_ROOT /var/www/source
 
-# adds zip and unzip packages to extract composer
+# add extensions
 RUN apt-get update && \
    apt-get install -y \
    libzip-dev \
-   zip \
-   unzip \
-   && docker-php-ext-install zip
-
-# adds php docker extensions
-RUN docker-php-ext-install zip
+   && docker-php-ext-install zip \
+   && rm -rf /var/lib/apt/lists/*
 
 # enables apache htaccess rewrite rules
 RUN a2enmod rewrite
