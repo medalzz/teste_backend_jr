@@ -1,6 +1,6 @@
 FROM php:7.4-apache
 
-ENV APACHE_DOCUMENT_ROOT /var/www/source
+ENV APACHE_DOCUMENT_ROOT /var/www
 
 # add extensions
 RUN apt-get update && \
@@ -19,14 +19,14 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# sets work directory to /var/www/source
-WORKDIR /var/www/source
+# sets work directory to /var/www
+WORKDIR /var/www
 
 # adds composer.json dependencies and install it
-COPY ./source/composer.json .
+COPY ./composer.json .
 RUN composer install --no-scripts --no-autoloader
 
-COPY ./source /var/www/source
+COPY . /var/www/
 
 # recreates autoload file
 RUN composer dump-autoload -o

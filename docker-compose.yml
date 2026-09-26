@@ -4,5 +4,5 @@ services:
     ports: 
       - "8000:80"
     volumes:
-      - ./source:/var/www/source
+      - .:/var/www
       - ./data:/var/www/data

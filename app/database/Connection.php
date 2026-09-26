@@ -12,7 +12,7 @@ class Connection{
    public function getConnection(){
       try{
          return new \PDO(
-            'sqlite:../data/db.sq3',
+            'sqlite:./data/db.sq3',
             '',
             '',
             [
