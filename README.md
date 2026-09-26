@@ -78,7 +78,12 @@ Made with PHP and [Flight](https://github.com/mikecao/flight) routing system.
 
 1- Clone the repo.
 
-2- Start the container on port 8000:
+2- Install dependencies
+```bash
+  composer install 
+```
+
+3- Start the container on port 8000:
 
 ```bash
   docker compose up -d
